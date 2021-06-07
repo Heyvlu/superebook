@@ -1,0 +1,23 @@
+{
+  "name": "superebookserver",
+  "version": "1.0.0",
+  "description": "an opensource e book spider system server side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "spider",
+    "ebook",
+    "server"
+  ],
+  "author": "heyvlu",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.9",
+    "koa": "^2.13.1"
+  }
+}
