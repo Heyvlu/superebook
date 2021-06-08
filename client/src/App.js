@@ -15,7 +15,11 @@ function App() {
     <div className="App">
       <div>{mulu?Object.keys(mulu).map(key=>{
         const url=mulu[key];
-        return <div><button>{key}</button></div>
+        return <div><button onClick={()=>{
+          axios.get('http://localhost:8000',{params:{url}}).then(chapter=>{
+            return <div>{chapter}</div>
+          })
+        }}>{key}</button></div>
       }):'请求中'}</div>
       {state > 5 ? (
         <Sum a={1} b={state} />
