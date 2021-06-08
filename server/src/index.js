@@ -1,13 +1,10 @@
 const {getOne,catalog}=require('./book');
 const Koa=require('koa');
 const cors=require('@koa/cors');
-const koaBody=require('koa-body');
-const router=require('koa-router')();
 const cache={};
 function main(){
   const app=new Koa();
   app.use(cors());
-  app.use(koaBody());
   app.use(async ctx=>{
     console.log(ctx.query.url);
     if(ctx.query.url){
