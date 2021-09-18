@@ -1,5 +1,6 @@
 .paragraph{
  text-indent: 2em;
- font-size: 14px;
- background-color: rgba(122, 63, 36, 0.7);
+ font-size: 13px;
+ background-color: rgba(187, 127, 99, 0.7);
+ padding-left: 8px;
 }

@@ -5,7 +5,7 @@ const Chapter=(props) => {
     const one=props.chapter.data.split('\n');
     console.log(props.chapter);
     return one.map((paragraph)=>{
-      return <div className="paragraph">{paragraph}<br/></div>
+      return <div key={paragraph} className="paragraph">{paragraph}<br/></div>
     })
   }else {
     return null;
