@@ -12,11 +12,19 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 600px;
+  width: 650px;
 }
 .muluButton{
-  width: 200px;
+  width: 225px;
   margin: 1px 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.request{
+  position: fixed;
+  left: 10px;
+  top: 3px;
 }
 .back{
   border: 1px solid rgb(68, 149, 202, .7);
