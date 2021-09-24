@@ -13,13 +13,20 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 650px;
+  justify-content: center;
+  align-items: center;
 }
 .muluButton{
+  margin: 3px 50px;
   width: 225px;
-  margin: 1px 50px;
+}
+.muluButtondiv{
+  display: block;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 .request{
   position: fixed;

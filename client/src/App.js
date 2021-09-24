@@ -1,10 +1,11 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect} from "react";
 import axios from 'axios';
 import Chapter from './Components/Chapter/index.jsx';
 import './App.css'
 import {Button} from 'antd';
 import 'antd/dist/antd.css';
 
+let scrollTop=0;
 function App() {
   const [state, SetState] = useState(1);
   const [mulu,setmulu]=useState(null);
@@ -12,20 +13,25 @@ function App() {
   const [back,setBack]=useState(null);
   const [title,setTitle]=useState(null);
   const [titleShow,setTitleShow]=useState(1);
-  const mulufatherRef=useRef();
   useEffect(()=>{
     axios.get('http://localhost:8000').then((res)=>{
       const {data}=res;
       setmulu(data);
-    })
-  },[])
+      document.addEventListener("scroll",()=>{
+        scrollTop=document.documentElement.scrollTop
+      })
+    });
+  },[]);
+  useEffect(()=>{
+    document.documentElement.scrollTop=scrollTop;
+      console.log(scrollTop);
+  },[mulu]);
   return (
     <div className="App">
-      <div className="mulufather" ref={mulufatherRef}>
+      <div className="mulufather">
         <div className="mulu">{mulu?Object.keys(mulu).map(key=>{
           const url=mulu[key];
-          console.log(mulufatherRef.scrollTop);
-          return <div key={key}><Button className="muluButton" onClick={()=>{
+          return <div key={key}><Button className="muluButton" ><div className="muluButtondiv" onClick={()=>{
             axios.get('http://localhost:8000',{params:{url}}).then(chapter=>{
               setmulu(null);
               setRequest(null);
@@ -33,7 +39,7 @@ function App() {
               setTitle(key);
               SetState(chapter);
             })
-          }}>{key}</Button></div>
+          }}>{key}</div></Button></div>
         }):<div className="request">{request}</div>}</div>
       </div>
       {back?<button className='back' onClick={()=>{
