@@ -1,0 +1,23 @@
+.inputBorder{
+  margin: 5% 0 5% 40%;
+  border-radius: 3px;
+  border: 1px solid gray;
+}
+.inputBorder::-webkit-input-placeholder{
+  font-size: 13px;
+}
+.inputBorder:focus{
+  border: 1px solid #1890ff;
+  outline: none;
+}
+.submitLink{
+  border: 1px solid #1890ff;
+  margin-left: 5px;
+  padding: 1.5px 3px 2.75px 3px;
+  border-radius: 2px;
+}
+.searchBtn{
+  position: fixed;
+  left: 0;
+  top: 0;
+}
