@@ -6,16 +6,21 @@ import {Button} from 'antd';
 import 'antd/dist/antd.css';
 
 let scrollTop=0;
-function Detail() {
+function Detail(props) {
   const [state, SetState] = useState(1);
   const [mulu,setmulu]=useState(null);
   const [request,setRequest]=useState('请求中...');
   const [back,setBack]=useState(null);
   const [title,setTitle]=useState(null);
   const [titleShow,setTitleShow]=useState(1);
+  // const [fathersh,setFatherSh]=useState();
+  // const setSh=(val)=>{
+  //   setFatherSh(val);
+  // };
   useEffect(() => {
     axios.get('http://localhost:8000').then((res) => {
         const {data} = res;
+        // console.log(data);
         setmulu(data);
     });
   }, []);
@@ -24,7 +29,7 @@ function Detail() {
     const scrollCallback = () => {
     // prevent set scroll variable to 0 when go to read page
       if (mulu) {
-        console.log('===> setScrollTop', scrollTop, document.documentElement.scrollTop)
+        console.log('===> setScrollTop', scrollTop, document.documentElement.scrollTop);
         scrollTop = document.documentElement.scrollTop
       }
     }
@@ -44,12 +49,14 @@ function Detail() {
         <div className="mulu">{mulu?Object.keys(mulu).map(key=>{
           const url=mulu[key];
           return <div key={key}><Button className="muluButton" ><div className="muluButtondiv" onClick={()=>{
+            console.log(props);
             axios.get('http://localhost:8000',{params:{url}}).then(chapter=>{
               setmulu(null);
               setRequest(null);
               setBack('返回目录');
               setTitle(key);
               SetState(chapter);
+              props.setSh(0);
             })
           }}>{key}</div></Button></div>
         }):<div className="request">{request}</div>}</div>
@@ -58,9 +65,10 @@ function Detail() {
         axios.get('http://localhost:8000').then((res)=>{
           const {data}=res;
           setmulu(data);
-        })
+        });
         SetState(null);
         setBack(null);
+        props.setSh(1);
         setTitle(null);
         setTitleShow(null);
       }}>{back}</button>:null}
