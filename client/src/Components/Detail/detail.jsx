@@ -13,17 +13,14 @@ function Detail(props) {
   const [back,setBack]=useState(null);
   const [title,setTitle]=useState(null);
   const [titleShow,setTitleShow]=useState(1);
-  // const [fathersh,setFatherSh]=useState();
-  // const setSh=(val)=>{
-  //   setFatherSh(val);
-  // };
   useEffect(() => {
-    axios.get('http://localhost:8000').then((res) => {
+    console.log(props.IpVal);
+    axios.get('http://localhost:8000',{params:{url:props.IpVal}}).then((res) => {
         const {data} = res;
         // console.log(data);
         setmulu(data);
     });
-  }, []);
+  }, [props.IpVal]);
 
   useEffect(()=>{
     const scrollCallback = () => {

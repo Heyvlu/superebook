@@ -1,6 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+// 获取具体的章节
 async function getOne(url) {
   const { data } = await axios.get(url);
   const html = cheerio.load(data);
@@ -11,6 +12,7 @@ async function getOne(url) {
     .replace(/<p>.+<\/p>/g, "");
   return characters;
 }
+// 获取目录
 async function catalog(url) {
   const { data: datalog } = await axios.get(url);
   const htmlLog = cheerio.load(datalog);
@@ -19,6 +21,7 @@ async function catalog(url) {
   Array.from(everyLink).forEach((a) => {
     collection[a.children[0].data] = "https://www.xbiquge.la" + a.attribs.href;
   });
+  console.log(collection);
   return collection;
 }
 

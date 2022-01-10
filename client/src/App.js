@@ -19,16 +19,15 @@ function App() {
     <div>
       <Router>
         {state?<div>
-                <input placeholder="请输入你的目录url" className="inputBorder" value={input} onChange={(e)=>{
+                <input placeholder="请输入你喜欢小说的目录url" className="inputBorder" value={input} onChange={(e)=>{
                   setInput(e.target.value);
-                  // console.log(e.target.value);
-                }}/>
+                }} type="text" style={{}}/>
                 <span className="submitLink"><Link to="/detail" onClick={()=>{
                   setState(0);
                 }}>提交</Link></span>
               </div>:<div>
                         <Switch>
-                          <Route exact path="/detail"><Detail props={input} setSh={changeSh}/></Route>
+                          <Route exact path="/detail"><Detail IpVal={input} setSh={changeSh}/></Route>
                         </Switch>
                         {search?<Button className='searchBtn' onClick={()=>{
                                   setState(1);
