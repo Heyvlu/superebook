@@ -18,8 +18,7 @@ function main(){
     //   }
     // }
     if(ctx.query.url){
-      // ctx.body=await getOne(ctx.query.url);
-      ctx.body=await catalog('https://www.xbiquge.la/13/13959/');
+      ctx.body=await catalog(ctx.query.url);
       cache.mulu=ctx.body;
     }else{
       if(cache.mulu){
