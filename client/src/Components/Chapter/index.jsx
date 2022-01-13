@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css'
+import './index.css';
 const Chapter=(props) => {
   if(props.chapter && props.chapter.data){
     const one=props.chapter.data.split('\n');

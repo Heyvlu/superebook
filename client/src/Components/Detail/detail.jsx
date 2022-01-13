@@ -3,6 +3,7 @@ import axios from 'axios';
 import Chapter from '../Chapter/index.jsx';
 import './detail.css'
 import {Button} from 'antd';
+import { Modal } from '@douyinfe/semi-ui';
 import 'antd/dist/antd.css';
 
 let scrollTop=0;
@@ -19,6 +20,8 @@ function Detail(props) {
         const {data} = res;
         // console.log(data);
         setmulu(data);
+    }).catch(()=>{
+      alert("请求出错请重试，你必须输入正确的目录页链接！")
     });
   }, [props.IpVal]);
 
@@ -47,13 +50,15 @@ function Detail(props) {
           const url=mulu[key];
           return <div key={key}><Button className="muluButton" ><div className="muluButtondiv" onClick={()=>{
             console.log(props);
-            axios.get('http://localhost:8000',{params:{url}}).then(chapter=>{
+            axios.get('http://localhost:8000',{params:{url,chapter:1}}).then(chapter=>{
               setmulu(null);
               setRequest(null);
               setBack('返回目录');
               setTitle(key);
               SetState(chapter);
               props.setSh(0);
+            }).catch(()=>{
+              Modal.error({ 'title': '请求错误', 'content': '请重新尝试！' ,'onOk':()=>{window.localtion.href='http://localhost:3000/detail'}});
             })
           }}>{key}</div></Button></div>
         }):<div className="request">{request}</div>}</div>
