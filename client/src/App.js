@@ -19,7 +19,13 @@ function App() {
     <div>
       <Router>
         {state?<div>
-                <input placeholder="请输入你喜欢小说的目录url" className="inputBorder" value={input} onChange={(e)=>{
+                <div className='website'>
+                  <div>请从以下网站中选出你喜欢的小说，并复制目录页链接到搜索框中：</div>
+                  <div className='openWebsite' onClick={()=>{
+                    window.open('https://www.xbiquge.la');
+                  }}>https://www.xbiquge.la</div>
+                </div>
+                <input placeholder="请输入你喜欢小说的目录页url" className="inputBorder" value={input} onChange={(e)=>{
                   setInput(e.target.value);
                 }} type="text" style={{}}/>
                 <span className="submitLink"><Link to="/detail" onClick={()=>{

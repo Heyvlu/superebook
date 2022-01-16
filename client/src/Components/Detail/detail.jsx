@@ -3,7 +3,7 @@ import axios from 'axios';
 import Chapter from '../Chapter/index.jsx';
 import './detail.css'
 import {Button} from 'antd';
-import { Modal } from '@douyinfe/semi-ui';
+import Remiding from "../Remiding/remiding.jsx";
 import 'antd/dist/antd.css';
 
 let scrollTop=0;
@@ -13,7 +13,9 @@ function Detail(props) {
   const [request,setRequest]=useState('请求中...');
   const [back,setBack]=useState(null);
   const [title,setTitle]=useState(null);
-  const [titleShow,setTitleShow]=useState(1);
+  const [titleShow,setTitleShow]=useState(0);
+  const [remiding,setRemiding]=useState('请求出错请重试，你必须输入正确的目录页链接！');
+  const [remidingShow,setRemidingShow]=useState(0);
   useEffect(() => {
     console.log(props.IpVal);
     axios.get('http://localhost:8000',{params:{url:props.IpVal}}).then((res) => {
@@ -21,7 +23,8 @@ function Detail(props) {
         // console.log(data);
         setmulu(data);
     }).catch(()=>{
-      alert("请求出错请重试，你必须输入正确的目录页链接！")
+      setRemidingShow(1);
+      setRequest(null);
     });
   }, [props.IpVal]);
 
@@ -35,7 +38,7 @@ function Detail(props) {
     }
     document.addEventListener("scroll", scrollCallback)
     //unmount listener when App component unmount
-    return () => document.removeEventListener('scroll', scrollCallback)
+    return () => document.removeEventListener('scroll', scrollCallback);
 
   },[mulu])
 
@@ -56,9 +59,11 @@ function Detail(props) {
               setBack('返回目录');
               setTitle(key);
               SetState(chapter);
+              setTitleShow(1);
               props.setSh(0);
             }).catch(()=>{
-              Modal.error({ 'title': '请求错误', 'content': '请重新尝试！' ,'onOk':()=>{window.localtion.href='http://localhost:3000/detail'}});
+              setRemiding('请求出错请重试！');
+              setRemidingShow(1);
             })
           }}>{key}</div></Button></div>
         }):<div className="request">{request}</div>}</div>
@@ -76,6 +81,10 @@ function Detail(props) {
       }}>{back}</button>:null}
       {titleShow && !request?<div  className='title'>{title}</div>:null}
       <Chapter chapter={state}/>
+      {remidingShow?<Remiding param={remiding} onClick={()=>{
+        setRemidingShow(0);
+        window.location.href="http://localhost:3000";
+      }}/>:null}
     </div>
   );
 }

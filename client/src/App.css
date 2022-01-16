@@ -1,12 +1,22 @@
+.website{
+  margin-left: 38%;
+  margin-top: 7%;
+  font-size: 16px;
+}
+.openWebsite{
+  color: #1890ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
 .inputBorder{
-  margin: 7% 0 5% 40%;
+  margin: 2% 0 5% 40%;
   border-radius: 3px;
   border: 1px solid gray;
-  width:170px;
+  width:180px;
   height:45px;
 }
 .inputBorder::-webkit-input-placeholder{
-  font-size: 13px;
+  font-size: 15px;
 }
 .inputBorder:focus{
   border: 1px solid #1890ff;

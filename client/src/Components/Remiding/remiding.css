@@ -1,0 +1,15 @@
+.remiding{
+    position: fixed;
+    top: 33%;
+    left: 38%;
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 40px 20px 15px 20px;
+    font-size: 18px;
+    color: red;
+}
+.remidingBtn{
+    position: relative;
+    right: -80%;
+    margin-top: 25px;
+}
