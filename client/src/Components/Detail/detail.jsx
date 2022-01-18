@@ -8,20 +8,58 @@ import 'antd/dist/antd.css';
 
 let scrollTop=0;
 function Detail(props) {
-  const [state, SetState] = useState(1);
+  const [state, SetState] = useState();
   const [mulu,setmulu]=useState(null);
+  const [muluBackup,setMuluBackup]=useState();
   const [request,setRequest]=useState('请求中...');
   const [back,setBack]=useState(null);
   const [title,setTitle]=useState(null);
   const [titleShow,setTitleShow]=useState(0);
   const [remiding,setRemiding]=useState('请求出错请重试，你必须输入正确的目录页链接！');
   const [remidingShow,setRemidingShow]=useState(0);
+  const [turnChapter,setTurnChapter]=useState('');
+  const calcPage=(val)=>{
+    // 点击下一章
+    if(val[0]){
+      // Object.keys(muluBackup);
+      // console.log(muluBackup);
+      Object.keys(muluBackup).forEach((key,index) => {
+        if(muluBackup[key]===val[1]){
+          const i=index+1;
+          if(i>=0 && i<Object.keys(muluBackup).length){
+            setTurnChapter(muluBackup[Object.keys(muluBackup)[i]]);
+            console.log(muluBackup[Object.keys(muluBackup)[i]],'下一章');
+            axios.get('http://localhost:8000',{params:{url:turnChapter,chapter:1}}).then(chapter=>{
+              SetState(chapter);
+              console.log(chapter,'000000');
+            })
+          }
+        }
+      });
+    }else{
+      // 点击上一章
+      Object.keys(muluBackup).forEach((key,index) => {
+        if(muluBackup[key]===val[1]){
+          const i=index-1;
+          if(i>=0 && i<Object.keys(muluBackup).length){
+            setTurnChapter(muluBackup[Object.keys(muluBackup)[i]]);
+            console.log(muluBackup[Object.keys(muluBackup)[i]],'上一章');
+            // axios.get('http://localhost:8000',{params:{url:turnChapter,chapter:1}}).then(chapter=>{
+            //   SetState(chapter);
+            //   console.log(chapter,'000000');
+            // })
+          }
+        }
+      });
+    }
+  }
   useEffect(() => {
     console.log(props.IpVal);
     axios.get('http://localhost:8000',{params:{url:props.IpVal}}).then((res) => {
         const {data} = res;
         // console.log(data);
         setmulu(data);
+        setMuluBackup(data);
     }).catch(()=>{
       setRemidingShow(1);
       setRequest(null);
@@ -47,7 +85,7 @@ function Detail(props) {
     console.log('====>test', scrollTop);
   }, [mulu]);
   return (
-    <div className="App">
+    <div>
       <div className="mulufather">
         <div className="mulu">{mulu?Object.keys(mulu).map(key=>{
           const url=mulu[key];
@@ -80,7 +118,7 @@ function Detail(props) {
         setTitleShow(null);
       }}>{back}</button>:null}
       {titleShow && !request?<div  className='title'>{title}</div>:null}
-      <Chapter chapter={state}/>
+      {state?<Chapter chapter={state} calcChapter={calcPage} turn={turnChapter}/>:null}
       {remidingShow?<Remiding param={remiding} onClick={()=>{
         setRemidingShow(0);
         window.location.href="http://localhost:3000";

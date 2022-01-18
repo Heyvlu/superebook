@@ -24,13 +24,23 @@ function App() {
                   <div className='openWebsite' onClick={()=>{
                     window.open('https://www.xbiquge.la');
                   }}>https://www.xbiquge.la</div>
+                  <div className='openWebsite' onClick={()=>{
+                    window.open('http://mm.faloo.com');
+                  }}>http://mm.faloo.com</div>
+
+                  <div className='openWebsite' onClick={()=>{
+                    window.open('https://www.csg99.com');
+                  }}>https://www.csg99.com</div>
+                  <div className='openWebsite' onClick={()=>{
+                    window.open('https://www.kanunu8.com');
+                  }}>https://www.kanunu8.com</div>
                 </div>
                 <input placeholder="请输入你喜欢小说的目录页url" className="inputBorder" value={input} onChange={(e)=>{
                   setInput(e.target.value);
                 }} type="text" style={{}}/>
                 <span className="submitLink"><Link to="/detail" onClick={()=>{
                   setState(0);
-                }}>提交</Link></span>
+                }}>搜索</Link></span>
               </div>:<div>
                         <Switch>
                           <Route exact path="/detail"><Detail IpVal={input} setSh={changeSh}/></Route>

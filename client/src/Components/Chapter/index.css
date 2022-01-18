@@ -5,6 +5,22 @@
 }
 .paragraph{
  text-indent: 2em;
- font-size: 13px;
+ font-size: 14px;
  padding-left: 8px;
+}
+.turnPage{
+    cursor: pointer;
+    font-size: 15px;
+}
+.pageUp{
+    margin-left: 45%;
+}
+.pageUp:hover{
+    text-decoration: underline;
+}
+.pageDown{
+    margin-left: 5%;
+}
+.pageDown:hover{
+    text-decoration: underline;
 }
