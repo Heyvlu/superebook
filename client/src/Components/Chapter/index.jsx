@@ -2,7 +2,7 @@ import React from "react";
 import './index.css';
 const Chapter = (props) => {
   if (props.chapter && props.chapter.data) {
-    // console.log(props);
+    console.log(props,'chapter');
     // console.log(props.chapter.config.params.url);
     const one = props.chapter.data.split('\n');
     return <div className="paragraphF">{one.map((paragraph, index) => {
@@ -11,15 +11,9 @@ const Chapter = (props) => {
       <div className="turnPage">
         <span className="pageUp" onClick={() => {
           props.calcChapter([0, props.chapter.config.params.url]);
-          if (props.turn) {
-            console.log(props.turn, '!上');
-          }
         }}>上一章</span>
         <span className="pageDown" onClick={() => {
           props.calcChapter([1, props.chapter.config.params.url]);
-          if (props.turn) {
-            console.log(props.turn, '!下');
-          }
         }}>下一章</span>
       </div>
     </div>
