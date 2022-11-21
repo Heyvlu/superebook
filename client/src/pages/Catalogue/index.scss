@@ -1,0 +1,50 @@
+.backToPage{
+  position: fixed;
+  left: 5px;
+  top: 5px;
+  font-size: 16px;
+}
+.catalogueContainer{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-auto-flow: row;
+  grid-row-gap: 28px;
+  margin-top: 15px;
+  padding:0px 50px 20px 50px;
+  .catalogueSpan{
+    height: 35px;
+    margin: 0 auto;
+    .catalogue{
+      width: 230px;
+      height:35px;
+      line-height: 35px;
+      border:1px solid blue;
+      //padding-left: 10px;
+      padding: 0 5px 0 10px;
+      border-radius: 5px;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      word-wrap: break-word;
+      word-break: break-all;
+      textDecoration:none;
+      &:hover{
+        color: white !important;
+        border:1px solid rgba(var(--semi-blue-3), 1);
+        background-color: rgba(var(--semi-blue-3), 1);
+      }
+    }
+  }
+}
+.backTop{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  background-color: #0077fa;
+  color: #fff;
+  bottom: 100px;
+}

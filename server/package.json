@@ -1,0 +1,31 @@
+{
+  "name": "superebookserver",
+  "version": "1.0.0",
+  "description": "an opensource e book spider system server side",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "spider",
+    "ebook",
+    "server"
+  ],
+  "author": "heyvlu",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.9",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^12.0.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "qs": "^6.11.0",
+    "sequelize": "^6.25.3"
+  }
+}

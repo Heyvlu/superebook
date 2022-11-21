@@ -1,0 +1,54 @@
+.login{
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .backToPage{
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    font-size: 16px;
+  }
+  .logout{
+    text-align: right;
+    transform: translateY(-12px);
+  }
+  .avatarImg{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .avatar-upload .semi-upload-add{
+      border-radius: 50%;
+      .iconCamera{
+        background-color: var(--semi-color-overlay-bg);
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--semi-color-white);
+      }
+    }
+  }
+  .avatarBt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .userNameContainer{
+    width: 100%;
+    line-height: 30px;
+    font-size: 16px;
+    margin-top: 35px;
+    text-align: center;
+    .userNameLable{
+      font-weight: bold;
+    }
+    .userName{
+      width: 80%;
+      display: inline-block;
+      background-color: rgba(var(--semi-grey-1), 1);
+    }
+  }
+}

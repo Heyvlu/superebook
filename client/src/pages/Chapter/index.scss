@@ -1,0 +1,28 @@
+.chapter{
+  background-color:#DDC090;
+  min-height: 100vh;
+  width: 100vw;
+  .backToPage{
+    position: fixed;
+    left: 5px;
+    top: 5px;
+    font-size: 16px;
+  }
+  .chapterTitle{
+    font-size: 25px;
+    padding-top: 5px;
+  }
+  .chapterContent{
+    padding: 20px 20px 45px 10%;
+    white-space: pre-wrap;
+    text-align: left;
+  }
+  .changeChapter{
+    position: fixed;
+    bottom: 5px;
+    left: 40%;
+    .changeButton{
+      font-size: 19px;
+    }
+  }
+}
