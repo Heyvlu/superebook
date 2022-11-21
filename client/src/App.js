@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect} from "react";
+import React, {Suspense} from "react";
 import './App.scss';
 import routes from './routes';
 import {useRoutes} from "react-router-dom";

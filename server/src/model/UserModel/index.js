@@ -1,5 +1,4 @@
 const {Sequelize,DataTypes} = require('sequelize');
-const {Logger} = require("sequelize/lib/utils/logger");
 
 const sequelize=new Sequelize('my_db','root','123456youcando',{
     host:'localhost',
