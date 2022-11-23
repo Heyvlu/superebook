@@ -2,11 +2,12 @@ import React, {useState, useEffect, useCallback,} from "react";
 import './index.scss';
 import { Input,Button,Dropdown,Modal,Avatar} from '@douyinfe/semi-ui';
 import {IconSearch,IconUserCircle} from '@douyinfe/semi-icons';
-import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
 import {setConfirm} from "../../redux/actions/setConfirm";
 import {setAuthentication} from "../../redux/actions/setAuthentication";
+import getNovelInfo from "../../network/getNovelInfo";
+import jwtAuthentication from "../../network/jwtAuthentication";
 
 
 function Home(props) {
@@ -34,11 +35,7 @@ function Home(props) {
             if(inputValue===''){
                 setConfirm({visible:true,title:'警告!',content:'请求出错，请重试！请确保您搜索的小说名字正确'});
             }else{
-                axios.get('http://localhost:8000/home',{params: { url:JSON.stringify({
-                            url:"https://www.ibiquge.la/modules/article/waps.php",
-                            method:"POST",
-                            data:{searchkey:inputValue}
-                        }) }}).then((res)=>{
+                    getNovelInfo(inputValue).then((res)=>{
                     setNovelName(res.data[0]);
                     setNovelUrl(res.data[1]);
                     setToCatalogue(!toCatalogue);
@@ -69,7 +66,7 @@ function Home(props) {
     useEffect(()=>{
         if(localStorage.getItem("jwtTokenString")){
             const jwtTokenString=localStorage.getItem("jwtTokenString");
-            axios.post('http://localhost:8000/authentication',{jwtTokenString}).then(res=>{
+            jwtAuthentication(jwtTokenString).then(res=>{
                 if(res.data.flag){
                     //jwt鉴权成功
                     setUrl(`http://localhost:8000/getAvatarImg?path=${res.data.path}`);

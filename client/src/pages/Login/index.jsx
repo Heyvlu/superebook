@@ -1,11 +1,13 @@
 import React,{useRef,useState,useEffect} from "react";
 import './index.scss';
-import axios from 'axios';
 import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
 import {Card, Form, Button, Toast, Avatar,Upload} from '@douyinfe/semi-ui';
 import {IconUpload,IconCamera} from '@douyinfe/semi-icons';
 import {setAuthentication} from "../../redux/actions/setAuthentication";
+import jwtAuthentication from "../../network/jwtAuthentication";
+import userLogin from "../../network/userLogin";
+import userRegister from "../../network/userRegister"
 
 function Login(props){
     const navigate=useNavigate();
@@ -23,7 +25,7 @@ function Login(props){
     useEffect(()=>{
         if(localStorage.getItem("jwtTokenString")){
             const jwtTokenString=localStorage.getItem("jwtTokenString");
-            axios.post('http://localhost:8000/authentication',{jwtTokenString}).then(res=>{
+            jwtAuthentication(jwtTokenString).then(res=>{
                 if(res.data.flag){
                     //jwt鉴权成功
                     setLoginSuccess(true);
@@ -42,7 +44,7 @@ function Login(props){
         if(userName===undefined || password===undefined){
             Toast.error('请输入用户名和密码');
         }else{
-            axios.post('http://localhost:8000/login',{userName,password}).then((res)=>{
+            userLogin(userName,password).then((res)=>{
                 console.log('登录结果',res.data);
                 if(res.data.flag===true){
                     Toast.success('登录成功!');
@@ -68,8 +70,7 @@ function Login(props){
         if(userName===undefined || password===undefined){
             Toast.error('请输入用户名和密码');
         }else{
-            axios.post('http://localhost:8000/register',{userName,password}).then((res)=>{
-                console.log('注册结果',res.data);
+            userRegister(userName,password).then((res)=>{
                 if(res.data===true){
                     Toast.success('注册成功！请登录');
                     setTimeout(()=>{

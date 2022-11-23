@@ -1,6 +1,5 @@
 import React,{useEffect,useState} from "react";
 import {useLocation,useNavigate} from "react-router-dom";
-import axios from "axios";
 import './index.scss';
 import Loading from "../../components/Loading";
 import {Button,Toast,Modal} from "@douyinfe/semi-ui";
@@ -8,6 +7,8 @@ import {IconArrowLeft,IconArrowRight,IconBookmark} from "@douyinfe/semi-icons";
 // react-redux相关
 import {connect} from "react-redux";
 import {setConfirm} from "../../redux/actions/setConfirm";
+import getChapter from "../../network/getChapter";
+import getCatalogue from "../../network/getCatalogue";
 
 // 章节详情页
 function Chapter(props){
@@ -19,8 +20,7 @@ function Chapter(props){
     const navigate=useNavigate();
 
     useEffect(()=>{
-        // debugger;
-        axios.get('http://localhost:8000/chapter', { params: { url } }).then((chapter)=>{
+        getChapter(url).then((chapter)=>{
             setChapter(chapter.data);
             setLoading(false);
         }).catch(()=>{
@@ -44,7 +44,7 @@ function Chapter(props){
     }
     //改变章节
     function changeChapter(param){
-        axios.get('http://localhost:8000/catalogue',{params: { url: novelUrl}}).then((res)=>{
+        getCatalogue(novelUrl).then((res)=>{
             catalogue=res.data[0];
 
             //查询当前小说的阅读进度

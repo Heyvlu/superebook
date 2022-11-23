@@ -3,10 +3,10 @@ import {Button,Toast,Modal,BackTop} from '@douyinfe/semi-ui';
 import {IconBookmarkAddStroked,IconBookStroked,IconArrowUp} from '@douyinfe/semi-icons';
 import {NavLink,useLocation,useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
-import axios from 'axios';
 import './index.scss';
 import Loading from "../../components/Loading";
 import {setScrollTop} from "../../redux/actions/setScrollTop";
+import getCatalogue from "../../network/getCatalogue";
 
 let readProgress=[];
 // 小说目录页
@@ -22,7 +22,7 @@ function Catalogue(props) {
     // console.log("novel",novelName,novelUrl);
 
     useEffect(()=>{
-        axios.get('http://localhost:8000/catalogue',{params: { url: novelUrl}}).then((res)=>{
+        getCatalogue(novelUrl).then((res)=>{
             setCatalogue({...res.data[0]});
             setNovelImg(res.data[1]);
             setLoading(false);
