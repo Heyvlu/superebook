@@ -8,6 +8,7 @@ import {setConfirm} from "../../redux/actions/setConfirm";
 import {setAuthentication} from "../../redux/actions/setAuthentication";
 import getNovelInfo from "../../network/getNovelInfo";
 import jwtAuthentication from "../../network/jwtAuthentication";
+import host from "../../network/const";
 
 
 function Home(props) {
@@ -69,7 +70,11 @@ function Home(props) {
             jwtAuthentication(jwtTokenString).then(res=>{
                 if(res.data.flag){
                     //jwt鉴权成功
-                    setUrl(`http://localhost:8000/getAvatarImg?path=${res.data.path}`);
+                    if(res.data.path===null){
+                        setUrl('');
+                    }else{
+                        setUrl(`${host}/getAvatarImg?path=${res.data.path}`);
+                    }
                     setAuthentication(true);
                 }
             })

@@ -7,7 +7,8 @@ import {IconUpload,IconCamera} from '@douyinfe/semi-icons';
 import {setAuthentication} from "../../redux/actions/setAuthentication";
 import jwtAuthentication from "../../network/jwtAuthentication";
 import userLogin from "../../network/userLogin";
-import userRegister from "../../network/userRegister"
+import userRegister from "../../network/userRegister";
+import host from "../../network/const";
 
 function Login(props){
     const navigate=useNavigate();
@@ -30,7 +31,11 @@ function Login(props){
                     //jwt鉴权成功
                     setLoginSuccess(true);
                     setUserName(res.data.userName);
-                    setUrl(`http://localhost:8000/getAvatarImg?path=${res.data.path}`);
+                    if(res.data.path===null){
+                        setUrl('');
+                    }else{
+                        setUrl(`${host}/getAvatarImg?path=${res.data.path}`);
+                    }
                     setAuthentication(true);
                 }
             })
@@ -45,13 +50,16 @@ function Login(props){
             Toast.error('请输入用户名和密码');
         }else{
             userLogin(userName,password).then((res)=>{
-                console.log('登录结果',res.data);
                 if(res.data.flag===true){
                     Toast.success('登录成功!');
                     setUserName(userName);
                     setLoginSuccess(true);
                     localStorage.setItem('jwtTokenString',res.data.jwt);
-                    setUrl(`http://localhost:8000/getAvatarImg?path=${res.data.path}`);
+                    if(res.data.path===null){
+                        setUrl('');
+                    }else{
+                        setUrl(`${host}/getAvatarImg?path=${res.data.path}`);
+                    }
                     //全局身份认证
                     setAuthentication(true);
                 }else{
@@ -130,7 +138,7 @@ function Login(props){
     //更换头像
     function upImgSuccess(response,file){
         const obj={path:response.path};
-        setUrl(`http://localhost:8000/getAvatarImg?path=${obj.path}`);
+        setUrl(`${host}/getAvatarImg?path=${obj.path}`);
     }
 
     return(

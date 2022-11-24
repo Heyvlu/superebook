@@ -43,12 +43,14 @@ function Catalogue(props) {
     useEffect(()=>{
         // debugger
        window.addEventListener("scroll",()=>{});
-       const arr=JSON.parse(localStorage.readProgress);
-        const res=arr.find((item)=>{
-            return item.novelName===novelName;
-        })
-       if(res!==undefined){
-           readProgress=res.title;
+       if(localStorage.getItem("readProgress")){
+           const arr=JSON.parse(localStorage.readProgress);
+           const res=arr.find((item)=>{
+               return item.novelName===novelName;
+           })
+           if(res!==undefined){
+               readProgress=res.title;
+           }
        }
         return ()=>{
            window.removeEventListener("scroll",()=>{});
