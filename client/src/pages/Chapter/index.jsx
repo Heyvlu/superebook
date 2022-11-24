@@ -1,14 +1,14 @@
 import React,{useEffect,useState} from "react";
 import {useLocation,useNavigate} from "react-router-dom";
 import './index.scss';
-import Loading from "../../components/Loading";
+import Loading from "@/components/Loading";
 import {Button,Toast,Modal} from "@douyinfe/semi-ui";
 import {IconArrowLeft,IconArrowRight,IconBookmark} from "@douyinfe/semi-icons";
 // react-redux相关
 import {connect} from "react-redux";
-import {setConfirm} from "../../redux/actions/setConfirm";
-import getChapter from "../../network/getChapter";
-import getCatalogue from "../../network/getCatalogue";
+import {setConfirm} from "@/redux/actions/setConfirm";
+import getChapter from "@/network/getChapter";
+import getCatalogue from "@/network/getCatalogue";
 
 // 章节详情页
 function Chapter(props){
@@ -57,7 +57,6 @@ function Chapter(props){
             array.forEach((item,index)=>{
                 if(param==="previous" && item[0]===title && index>0 && index<array.length){
                     // 上一章
-                    console.log('上一章');
                     setLoading(true);
                     let newObj=array[index-1];
 

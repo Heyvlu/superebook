@@ -4,9 +4,9 @@ import {IconBookmarkAddStroked,IconBookStroked,IconArrowUp} from '@douyinfe/semi
 import {NavLink,useLocation,useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
 import './index.scss';
-import Loading from "../../components/Loading";
-import {setScrollTop} from "../../redux/actions/setScrollTop";
-import getCatalogue from "../../network/getCatalogue";
+import Loading from "@/components/Loading";
+import {setScrollTop} from "@/redux/actions/setScrollTop";
+import getCatalogue from "@/network/getCatalogue";
 
 let readProgress=[];
 // 小说目录页

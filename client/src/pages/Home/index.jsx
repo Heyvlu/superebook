@@ -4,11 +4,11 @@ import { Input,Button,Dropdown,Modal,Avatar} from '@douyinfe/semi-ui';
 import {IconSearch,IconUserCircle} from '@douyinfe/semi-icons';
 import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
-import {setConfirm} from "../../redux/actions/setConfirm";
-import {setAuthentication} from "../../redux/actions/setAuthentication";
-import getNovelInfo from "../../network/getNovelInfo";
-import jwtAuthentication from "../../network/jwtAuthentication";
-import host from "../../network/const";
+import {setConfirm} from "@/redux/actions/setConfirm";
+import {setAuthentication} from "@/redux/actions/setAuthentication";
+import getNovelInfo from "@/network/getNovelInfo";
+import jwtAuthentication from "@/network/jwtAuthentication";
+import host from "@/network/const";
 
 
 function Home(props) {

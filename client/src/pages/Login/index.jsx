@@ -4,11 +4,11 @@ import {useNavigate} from "react-router-dom";
 import {connect} from "react-redux";
 import {Card, Form, Button, Toast, Avatar,Upload} from '@douyinfe/semi-ui';
 import {IconUpload,IconCamera} from '@douyinfe/semi-icons';
-import {setAuthentication} from "../../redux/actions/setAuthentication";
-import jwtAuthentication from "../../network/jwtAuthentication";
-import userLogin from "../../network/userLogin";
-import userRegister from "../../network/userRegister";
-import host from "../../network/const";
+import {setAuthentication} from "@/redux/actions/setAuthentication";
+import jwtAuthentication from "@/network/jwtAuthentication";
+import userLogin from "@/network/userLogin";
+import userRegister from "@/network/userRegister";
+import host from "@/network/const";
 
 function Login(props){
     const navigate=useNavigate();
