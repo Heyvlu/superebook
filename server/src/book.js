@@ -3,15 +3,29 @@ const cheerio = require("cheerio");
 const qs=require("qs");
 
 // 获取具体的章节
-async function getOne(url) {
-  const { data } = await axios.get(url);
-  const html = cheerio.load(data);
-  let characters = html("#content").html();
-  characters = characters
-    .replace(/&nbsp;/g, " ")
-    .replace(/<br>/g, "")
-    .replace(/<p>.+<\/p>/g, "");
-  return characters;
+async function getOne(url,count=0) {
+  try{
+    const {data} = await axios.get(url);
+    const html = cheerio.load(data);
+    let characters = html("#content").html();
+    characters = characters
+        .replace(/&nbsp;/g, " ")
+        .replace(/<br>/g, "")
+        .replace(/<p>.+<\/p>/g, "");
+    return characters;
+  }catch (e){
+    if(e.code==="ECONNRESET"){
+      return new Promise((resolve,reject)=>{
+        setTimeout(async()=>{
+          if(count>5){
+            reject(e);
+          }
+          resolve(await getOne(url,count+1))
+        },500)
+      })
+    }
+  }
+
 }
 
 // 获取目录

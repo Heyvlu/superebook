@@ -159,7 +159,7 @@ function Login(props){
                         <div className={"avatarImg"}>
                             <Upload
                                 className={"avatar-upload"}
-                                action={"http://localhost:8000/uploadImg"}
+                                action={`${host}/uploadImg`}
                                 headers={headers}
                                 data={{userName:userName}}
                                 name={"avatar"}
@@ -174,7 +174,7 @@ function Login(props){
                             </Upload>
                         </div>
                         <Upload
-                            action={"http://localhost:8000/uploadImg"}
+                            action={`${host}/uploadImg`}
                             headers={headers}
                             data={{userName:userName}}
                             name={"avatar"}
