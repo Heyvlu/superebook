@@ -15,7 +15,7 @@ function Home(props) {
     const {setConfirm,authentication,setAuthentication}=props;
     const navigate=useNavigate();
     const [toCatalogue,setToCatalogue]=useState(false);
-    const [inputValue,setInputValue]=useState('');
+    const [inputValue,setInputValue]=useState('大夏文圣');
     const [novelName,setNovelName]=useState();
     const [novelUrl,setNovelUrl]=useState();
     const [url,setUrl]=useState('');

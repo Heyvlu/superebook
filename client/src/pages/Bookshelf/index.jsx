@@ -23,7 +23,7 @@ function Bookshelf(){
                 maskClosable:false,
                 centered:true,
                 onOk:()=>{
-                    localStorage.clear();
+                    localStorage.removeItem("bookshelf");
                     navigate('/bookshelf',{
                         replace:true
                     });
