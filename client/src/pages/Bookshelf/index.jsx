@@ -55,7 +55,7 @@ function Bookshelf(){
     }
     return(
         <div>
-            <div>
+            <div className="bookshelfTitle">
                 <h2>我的书架<span style={{display:"inline-block",width:"35px"}}/><Button type="danger" onClick={clearBookshelf}>清空书架</Button></h2>
             </div>
             <div className={"bookshelfBack"}><Button theme='solid' type='primary' onClick={goBack}>返回</Button></div>
