@@ -3,7 +3,7 @@ import host from "./const";
 
 const getNovelInfo=async(novelName)=>{
     const res=await axios.get(`${host}/home`,{params: { url:JSON.stringify({
-                url:"https://www.ibiquge.la/modules/article/waps.php",
+                url:"https://www.ibiquges.com/modules/article/waps.php",
                 method:"POST",
                 data:{searchkey:novelName}
             }) }});
